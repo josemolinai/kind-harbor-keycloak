@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "*"
+    nginx.ingress.kubernetes.io/cors-expose-headers: "*"
+  labels:
+    app: keycloak
+  name: keycloak-auth
+  namespace: keycloak
+spec:
+  rules:
+    - host: sso.dev.local
+      http:
+        paths:
+          - backend:
+              service:
+                name: keycloak-discovery
+                port:
+                  number: 8080
+            path: /auth/
+            pathType: Prefix
+  tls:
+    - hosts:
+      - sso.dev.local

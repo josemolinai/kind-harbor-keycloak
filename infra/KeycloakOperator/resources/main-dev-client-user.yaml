@@ -1,0 +1,28 @@
+apiVersion: keycloak.org/v1alpha1
+kind: KeycloakUser
+metadata:
+  name: main-dev-client-users
+  namespace: keycloak
+  labels:
+    app: main-dev-keycloak
+spec:
+  realmSelector:
+     matchLabels:
+      app: main-dev-keycloak
+  user:
+    email: usuario@dev.local
+    emailVerified: true
+    enabled: true
+    firstName: Usuario
+    lastName: Dev
+    username: usuario@dev.local
+    credentials:
+      - type: "password"
+        value: "usuario"
+    realmRoles:
+      - "offline_access"
+    clientRoles:
+      account:
+        - "manage-account"
+      realm-management:
+        - "manage-users"

@@ -1,0 +1,29 @@
+apiVersion: keycloak.org/v1alpha1
+kind: KeycloakRealm
+metadata:
+  name: main-dev-realm
+  namespace: keycloak
+  labels:
+    app: main-dev-keycloak
+spec:
+  realm:
+    id: "dev"
+    realm: "dev"
+    enabled: True
+    displayName: "dev Users"
+    accessTokenLifespan: 300
+    accessTokenLifespanForImplicitFlow: 900
+    registrationAllowed: false
+    rememberMe: true
+    verifyEmail: false
+    loginWithEmailAllowed: true
+    resetPasswordAllowed: true
+    editUsernameAllowed: false
+    bruteForceProtected: true
+    failureFactor: 5
+    internationalizationEnabled: true
+    supportedLocales:
+      - en
+  instanceSelector:
+    matchLabels:
+      app: main-dev-keycloak

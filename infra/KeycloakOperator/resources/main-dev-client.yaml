@@ -1,0 +1,30 @@
+apiVersion: keycloak.org/v1alpha1
+kind: KeycloakClient
+metadata:
+  name: main-dev-client
+  namespace: keycloak
+  labels:
+    app: main-dev-keycloak
+spec:
+  realmSelector:
+     matchLabels:
+      app: main-dev-keycloak
+  client:
+    clientId: dev-cli
+    rootUrl: https://sso.dev.local
+    baseUrl: /auth/realms/dev/account/
+    enabled: true
+    standardFlowEnabled: true
+    implicitFlowEnabled: true
+    directAccessGrantsEnabled: true
+    serviceAccountsEnabled: true
+    clientAuthenticatorType: "client-secret"
+    redirectUris:
+      - "*"
+      - "https://sso.dev.local/*"
+      - "https://harbor.dev.local/c/oidc/callback"
+    protocol: "openid-connect"
+    defaultClientScopes:
+      - openid
+      - offline_access
+      

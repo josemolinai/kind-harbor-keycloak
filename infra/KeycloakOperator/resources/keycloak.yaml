@@ -1,0 +1,11 @@
+apiVersion: keycloak.org/v1alpha1
+kind: Keycloak
+metadata:
+  labels:
+      app: main-dev-keycloak
+  name: main-dev-keycloak
+  namespace: keycloak
+spec:
+  instances: 1
+  externalAccess:
+    enabled: false
