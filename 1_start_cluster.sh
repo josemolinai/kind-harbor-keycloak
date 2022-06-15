@@ -1,8 +1,10 @@
 #!/bin/sh
 set -o errexit
 
-reg_name='kind-registry'
+# create registry container unless it already exists
+reg_name='dev-registry'
 reg_port='5001'
+
 
 
 # create a cluster with the local registry enabled in containerd
@@ -24,7 +26,7 @@ networking:
   disableDefaultCNI: false
 nodes:
 - role: control-plane
-  image: kindest/node:v1.24.0@sha256:0866296e693efe1fed79d5e6c7af8df71fc73ae45e3679af05342239cdc5bc8e
+  image: localhost:5001/kindest/node:v1.24.0
   kubeadmConfigPatches:
   - |
     kind: InitConfiguration
@@ -41,9 +43,9 @@ nodes:
     listenAddress: "0.0.0.0"
     protocol: TCP
 - role: worker
-  image: kindest/node:v1.24.0@sha256:0866296e693efe1fed79d5e6c7af8df71fc73ae45e3679af05342239cdc5bc8e
+  image: localhost:5001/kindest/node:v1.24.0
 - role: worker
-  image: kindest/node:v1.24.0@sha256:0866296e693efe1fed79d5e6c7af8df71fc73ae45e3679af05342239cdc5bc8e    
+  image: localhost:5001/kindest/node:v1.24.0    
 EOF
 
 # connect the registry to the cluster network if not already connected
@@ -65,6 +67,7 @@ data:
     help: "https://kind.sigs.k8s.io/docs/user/local-registry/"
 EOF
 kubectl apply -f ./cluster/nginx-controller.yaml
+
 
 kubectl create namespace harbor
 kubectl create namespace keycloak

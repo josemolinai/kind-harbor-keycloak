@@ -7,13 +7,13 @@ expose:
     # Delete the "ssl-redirect" annotations in "expose.ingress.annotations" when TLS is disabled and "expose.type" is "ingress"
     # Note: if the "expose.type" is "ingress" and TLS is disabled,
     # the port must be included in the command when pulling/pushing images.
-    # Refer to https://github.com/goharbor/harbor/issues/5291 for details.
+    # Refer to https://github.com/localhost:5001/goharbor/harbor/issues/5291 for details.
     enabled: true
     # The source of the tls certificate. Set as "auto", "secret"
     # or "none" and fill the information in the corresponding section
     # 1) auto: generate the tls certificate automatically
     # 2) secret: read the tls certificate from the specified secret.
-    # The tls certificate can be generated manually or by cert manager
+    # The tls certificaste can be generated manually or by cert manager
     # 3) none: configure no tls certificate for the ingress. If the default
     # tls certificate is configured in the ingress controller, choose this option
     certSource: secret
@@ -399,7 +399,7 @@ enableMigrateHelmHook: false
 # If service exposed via "ingress", the Nginx will not be used
 nginx:
   image:
-    repository: goharbor/nginx-photon
+    repository: localhost:5001/goharbor/nginx-photon
     tag: v2.5.0
   # set the service account to be used, default if left empty
   serviceAccountName: ""
@@ -421,7 +421,7 @@ nginx:
 
 portal:
   image:
-    repository: goharbor/harbor-portal
+    repository: localhost:5001/goharbor/harbor-portal
     tag: v2.5.0
   # set the service account to be used, default if left empty
   serviceAccountName: ""
@@ -443,7 +443,7 @@ portal:
 
 core:
   image:
-    repository: goharbor/harbor-core
+    repository: localhost:5001/goharbor/harbor-core
     tag: v2.5.0
   # set the service account to be used, default if left empty
   serviceAccountName: ""
@@ -486,7 +486,7 @@ core:
 
 jobservice:
   image:
-    repository: goharbor/harbor-jobservice
+    repository: localhost:5001/goharbor/harbor-jobservice
     tag: v2.5.0
   replicas: 1
   revisionHistoryLimit: 10
@@ -526,7 +526,7 @@ registry:
   automountServiceAccountToken: false
   registry:
     image:
-      repository: goharbor/registry-photon
+      repository: localhost:5001/goharbor/registry-photon
       tag: v2.5.0
     # resources:
     #  requests:
@@ -534,7 +534,7 @@ registry:
     #    cpu: 100m
   controller:
     image:
-      repository: goharbor/harbor-registryctl
+      repository: localhost:5001/goharbor/harbor-registryctl
       tag: v2.5.0
 
     # resources:
@@ -592,7 +592,7 @@ chartmuseum:
   # Harbor defaults ChartMuseum to returning relative urls, if you want using absolute url you should enable it by change the following value to 'true'
   absoluteUrl: false
   image:
-    repository: goharbor/chartmuseum-photon
+    repository: localhost:5001/goharbor/chartmuseum-photon
     tag: v2.5.0
   replicas: 1
   revisionHistoryLimit: 10
@@ -615,7 +615,7 @@ trivy:
   enabled: true
   image:
     # repository the repository for Trivy adapter image
-    repository: goharbor/trivy-adapter-photon
+    repository: localhost:5001/goharbor/trivy-adapter-photon
     # tag the tag for Trivy adapter image
     tag: v2.5.0
   # set the service account to be used, default if left empty
@@ -689,7 +689,7 @@ notary:
     # mount the service account token
     automountServiceAccountToken: false
     image:
-      repository: goharbor/notary-server-photon
+      repository: localhost:5001/goharbor/notary-server-photon
       tag: v2.5.0
     replicas: 1
     # resources:
@@ -709,7 +709,7 @@ notary:
     # mount the service account token
     automountServiceAccountToken: false
     image:
-      repository: goharbor/notary-signer-photon
+      repository: localhost:5001/goharbor/notary-signer-photon
       tag: v2.5.0
     replicas: 1
     # resources:
@@ -741,13 +741,13 @@ database:
     # mount the service account token
     automountServiceAccountToken: false
     image:
-      repository: goharbor/harbor-db
+      repository: localhost:5001/goharbor/harbor-db
       tag: v2.5.0
     # The initial superuser password for internal database
     password: "changeit"
     # The size limit for Shared memory, pgSQL use it for shared_buffer
     # More details see:
-    # https://github.com/goharbor/harbor/issues/15034
+    # https://github.com/localhost:5001/goharbor/harbor/issues/15034
     shmSizeLimit: 512Mi
     # resources:
     #  requests:
@@ -805,7 +805,7 @@ redis:
     # mount the service account token
     automountServiceAccountToken: false
     image:
-      repository: goharbor/redis-photon
+      repository: localhost:5001/goharbor/redis-photon
       tag: v2.5.0
     # resources:
     #  requests:
@@ -846,7 +846,7 @@ exporter:
   # mount the service account token
   automountServiceAccountToken: false
   image:
-    repository: goharbor/harbor-exporter
+    repository: localhost:5001/goharbor/harbor-exporter
     tag: v2.5.0
   nodeSelector: {}
   tolerations: []

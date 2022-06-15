@@ -12,7 +12,7 @@ A local kubernetes cluster based on Kind to deploy harbor and keycloak.
 ## Instructions
 Execute the following scripts
 
-1. 0_preload.sh
+1. 0_init.sh
 1. 1_start_cluster.sh
 1. 2_init_keycloak.sh
 1. 3_get_keycloak_password.sh
